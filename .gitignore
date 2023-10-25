@@ -150,3 +150,4 @@ xcuserdata
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode,swift,swiftpackagemanager,swiftpm,macos,cocoapods
 .DS_Store
+*.xcuserstate

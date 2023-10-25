@@ -56,7 +56,7 @@ extension AdvancedCombineBootcamp {
                     }
                 } receiveValue: { [weak self] returnedValue in
                     guard let self else { return }
-                    self.data = returnedValue
+                    self.data.append(returnedValue)
                 }
                 .store(in: &cancellables)
 

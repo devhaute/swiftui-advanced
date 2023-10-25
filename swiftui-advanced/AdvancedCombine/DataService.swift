@@ -8,15 +8,19 @@
 import Foundation
 
 final class AdvancedCombineDataService {
-    @Published private(set) var basicPublisher: [String] = []
+    @Published private(set) var basicPublisher: String = ""
     
     init() {
         publishFakeData()
     }
     
     private func publishFakeData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            self.basicPublisher = ["one", "two", "three"]
+        let items = ["one", "two", "three"]
+        
+        for index in 0..<items.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index)) {
+                self.basicPublisher = items[index]
+            }
         }
     }
 }
