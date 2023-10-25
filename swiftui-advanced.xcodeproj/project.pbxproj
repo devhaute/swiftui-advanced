@@ -7,16 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F459F582AE8E4FC00AD77A2 /* AdvancedCombineBootcamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F459F572AE8E4FC00AD77A2 /* AdvancedCombineBootcamp.swift */; };
+		2F459F5A2AE8E61E00AD77A2 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F459F592AE8E61E00AD77A2 /* DataService.swift */; };
 		2FD9404529C2034200559207 /* swiftui_advancedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD9404429C2034200559207 /* swiftui_advancedApp.swift */; };
-		2FD9404729C2034200559207 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD9404629C2034200559207 /* ContentView.swift */; };
 		2FD9404929C2034300559207 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FD9404829C2034300559207 /* Assets.xcassets */; };
 		2FD9404C29C2034300559207 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FD9404B29C2034300559207 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2F459F572AE8E4FC00AD77A2 /* AdvancedCombineBootcamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedCombineBootcamp.swift; sourceTree = "<group>"; };
+		2F459F592AE8E61E00AD77A2 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		2FD9404129C2034200559207 /* swiftui-advanced.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swiftui-advanced.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FD9404429C2034200559207 /* swiftui_advancedApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_advancedApp.swift; sourceTree = "<group>"; };
-		2FD9404629C2034200559207 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		2FD9404829C2034300559207 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2FD9404B29C2034300559207 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -32,6 +34,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F459F562AE8E4BE00AD77A2 /* AdvancedCombine */ = {
+			isa = PBXGroup;
+			children = (
+				2F459F572AE8E4FC00AD77A2 /* AdvancedCombineBootcamp.swift */,
+				2F459F592AE8E61E00AD77A2 /* DataService.swift */,
+			);
+			path = AdvancedCombine;
+			sourceTree = "<group>";
+		};
 		2FD9403829C2034200559207 = {
 			isa = PBXGroup;
 			children = (
@@ -52,7 +63,7 @@
 			isa = PBXGroup;
 			children = (
 				2FD9404429C2034200559207 /* swiftui_advancedApp.swift */,
-				2FD9404629C2034200559207 /* ContentView.swift */,
+				2F459F562AE8E4BE00AD77A2 /* AdvancedCombine */,
 				2FD9404829C2034300559207 /* Assets.xcassets */,
 				2FD9404A29C2034300559207 /* Preview Content */,
 			);
@@ -137,8 +148,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FD9404729C2034200559207 /* ContentView.swift in Sources */,
+				2F459F5A2AE8E61E00AD77A2 /* DataService.swift in Sources */,
 				2FD9404529C2034200559207 /* swiftui_advancedApp.swift in Sources */,
+				2F459F582AE8E4FC00AD77A2 /* AdvancedCombineBootcamp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

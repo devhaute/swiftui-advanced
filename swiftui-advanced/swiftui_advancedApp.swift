@@ -11,7 +11,7 @@ import SwiftUI
 struct swiftui_advancedApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            AdvancedCombineBootcamp()
         }
     }
 }
