@@ -46,7 +46,21 @@ extension AdvancedCombineBootcamp {
         }
         
         private func addSubscribers() {
-            dataService.$basicPublisher
+//            dataService.$basicPublisher
+//                .sink { completion in
+//                    switch completion {
+//                    case .finished:
+//                        print("finished")
+//                    case .failure(let error):
+//                        print(error.localizedDescription)
+//                    }
+//                } receiveValue: { [weak self] returnedValue in
+//                    guard let self else { return }
+//                    self.data.append(returnedValue)
+//                }
+//                .store(in: &cancellables)
+            
+            dataService.currentValueSubject
                 .sink { completion in
                     switch completion {
                     case .finished:
@@ -59,7 +73,6 @@ extension AdvancedCombineBootcamp {
                     self.data.append(returnedValue)
                 }
                 .store(in: &cancellables)
-
         }
     }
 }

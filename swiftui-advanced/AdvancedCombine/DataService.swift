@@ -6,9 +6,11 @@
 //
 
 import Foundation
+import Combine
 
 final class AdvancedCombineDataService {
     @Published private(set) var basicPublisher: String = ""
+    let currentValueSubject = CurrentValueSubject<String, Never>("")
     
     init() {
         publishFakeData()
@@ -20,6 +22,12 @@ final class AdvancedCombineDataService {
         for index in 0..<items.count {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(index)) {
                 self.basicPublisher = items[index]
+            }
+        }
+        
+        for index in 0..<items.count {
+            DispatchQueue.main.asyncAfter(deadline: .now() + Double(index)) {
+                self.currentValueSubject.send(items[index]) 
             }
         }
     }
