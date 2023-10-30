@@ -16,11 +16,15 @@ final class AdvancedCombineDataService {
     }
     
     private func publishFakeData() {
-        let passthroughSubjectItems = Array(0..<11)
+        let passthroughSubjectItems = Array(1..<11) // 0 ~ 10
         
         for index in 0..<passthroughSubjectItems.count {
             DispatchQueue.main.asyncAfter(deadline: .now() + Double(index)) {
                 self.passthroughSubject.send(passthroughSubjectItems[index])
+                
+                if passthroughSubjectItems[index] >= passthroughSubjectItems.count - 1 {
+                    self.passthroughSubject.send(completion: .finished)
+                }
             }
         }
     }
