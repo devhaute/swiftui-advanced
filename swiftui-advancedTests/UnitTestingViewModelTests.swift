@@ -84,7 +84,7 @@ final class UnitTestingViewModelTests: XCTestCase {
         let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
         
         // When
-        let loopCount: Int = 10
+        let loopCount: Int = Int.random(in: 1...20)
         for _ in 0..<loopCount {
             viewModel.addItem(item: UUID().uuidString)
         }
@@ -104,5 +104,15 @@ final class UnitTestingViewModelTests: XCTestCase {
         // Then
         XCTAssertTrue(viewModel.dataArray.isEmpty)
         XCTAssertEqual(viewModel.dataArray.count, 0)
+    }
+    
+    func test_UnitTestingViewModel_selectedItem_shouldStartAsNil() {
+        // Given
+        
+        // When
+        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        
+        // Then
+        XCTAssertNil(viewModel.selectedItem)
     }
 }
