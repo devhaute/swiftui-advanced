@@ -115,4 +115,77 @@ final class UnitTestingViewModelTests: XCTestCase {
         // Then
         XCTAssertNil(viewModel.selectedItem)
     }
+    
+    // 배열에 없는 item을 선택했을 경우
+    func test_UnitTestingViewModel_selectedItem_shouldBeNilWhenSelectingInvalidItem() {
+        // Given
+        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        
+        // When
+        viewModel.addItem(item: UUID().uuidString)
+        
+        // Then
+        XCTAssertNil(viewModel.selectedItem)
+    }
+    
+    func test_UnitTestingViewModel_selectedItem_shouldBeSelected() {
+        // Given
+        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        let newItem = UUID().uuidString
+        
+        // When
+        viewModel.addItem(item: newItem)
+        viewModel.selectItem(item: newItem)
+        
+        // Then
+        XCTAssertNotNil(viewModel.selectedItem)
+    }
+    
+    func test_UnitTestingViewModel_selectedItem_shouldBeSelected_stress() {
+        // Given
+        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        let loopCount = 20
+        
+        // When
+        for _ in 0..<loopCount {
+            let newItem = UUID().uuidString
+            viewModel.addItem(item: newItem)
+            viewModel.selectItem(item: newItem)
+        }
+        
+        // Then
+        XCTAssertEqual(viewModel.dataArray.count, loopCount)
+        XCTAssertNotNil(viewModel.selectedItem)
+    }
+    
+    func test_UnitTestingViewModel_saveItem_shouldBeThrowsError_noData() {
+        // Given
+        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        
+        // When
+        
+        // Then
+        XCTAssertThrowsError(try viewModel.saveItem(item: "")) { error in
+            let resultError = error as? DataError
+            XCTAssertEqual(resultError, DataError.noData)
+        }
+    }
+    
+    func test_UnitTestingViewModel_saveItem_shouldSaveItem_stress() {
+        // Given
+        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        var tempItemArray = [String]()
+        
+        // When
+        for _ in 0..<20 {
+            let newItem = UUID().uuidString
+            viewModel.addItem(item: newItem)
+            tempItemArray.append(newItem)
+        }
+
+        // Then
+        XCTAssertNoThrow(
+            try viewModel.saveItem(item: tempItemArray.randomElement() ?? "")
+        )
+    }
 }
