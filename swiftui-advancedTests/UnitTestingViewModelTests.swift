@@ -194,8 +194,8 @@ final class UnitTestingViewModelTests: XCTestCase {
         
         // Then
         XCTAssertThrowsError(try viewModel.saveItem(item: "")) { error in
-            let resultError = error as? DataError
-            XCTAssertEqual(resultError, DataError.noData)
+            let resultError = error as? AppError
+            XCTAssertEqual(resultError, AppError.noData)
         }
     }
     

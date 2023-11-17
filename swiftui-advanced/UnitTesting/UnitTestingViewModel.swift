@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum DataError: LocalizedError {
-    case noData
-    case itemNotFound
-}
-
 extension UnitTestingView {
     class UnitTestingViewModel: ObservableObject {
         @Published var isPremium: Bool
@@ -34,13 +29,13 @@ extension UnitTestingView {
         
         func saveItem(item: String) throws {
             guard !item.isEmpty else {
-                throw DataError.noData
+                throw AppError.noData
             }
             
             if let data = dataArray.first(where: { $0 == item }) {
                 // 데이터 DB 저장 로직
             } else {
-                throw DataError.itemNotFound
+                throw AppError.itemNotFound
             }
         }
     }
