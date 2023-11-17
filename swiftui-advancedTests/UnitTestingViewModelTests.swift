@@ -13,13 +13,17 @@ import XCTest
 // Testing Structure: Given When Then
 
 final class UnitTestingViewModelTests: XCTestCase {
+    var viewModel: UnitTestingView.UnitTestingViewModel?
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        
+        viewModel = nil
     }
 
     func test_UnitTestViewModel_IsPremium_shouldBeTrue() {
@@ -72,7 +76,10 @@ final class UnitTestingViewModelTests: XCTestCase {
         // Given
         
         // When
-        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
         
         // Then
         XCTAssertTrue(viewModel.dataArray.isEmpty)
@@ -81,7 +88,10 @@ final class UnitTestingViewModelTests: XCTestCase {
     
     func test_UnitTestingViewModel_dataArray_shouldBeAddItems() {
         // Given
-        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
         
         // When
         let loopCount: Int = Int.random(in: 1...20)
@@ -96,7 +106,10 @@ final class UnitTestingViewModelTests: XCTestCase {
     
     func test_UnitTestingViewModel_dataArray_shouldNotAddEmptyString() {
         // Given
-        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
         
         // When
         viewModel.addItem(item: "")
@@ -110,7 +123,10 @@ final class UnitTestingViewModelTests: XCTestCase {
         // Given
         
         // When
-        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
         
         // Then
         XCTAssertNil(viewModel.selectedItem)
@@ -119,7 +135,10 @@ final class UnitTestingViewModelTests: XCTestCase {
     // 배열에 없는 item을 선택했을 경우
     func test_UnitTestingViewModel_selectedItem_shouldBeNilWhenSelectingInvalidItem() {
         // Given
-        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
         
         // When
         viewModel.addItem(item: UUID().uuidString)
@@ -130,7 +149,10 @@ final class UnitTestingViewModelTests: XCTestCase {
     
     func test_UnitTestingViewModel_selectedItem_shouldBeSelected() {
         // Given
-        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
         let newItem = UUID().uuidString
         
         // When
@@ -143,7 +165,10 @@ final class UnitTestingViewModelTests: XCTestCase {
     
     func test_UnitTestingViewModel_selectedItem_shouldBeSelected_stress() {
         // Given
-        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
         let loopCount = 20
         
         // When
@@ -160,7 +185,10 @@ final class UnitTestingViewModelTests: XCTestCase {
     
     func test_UnitTestingViewModel_saveItem_shouldBeThrowsError_noData() {
         // Given
-        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
         
         // When
         
@@ -173,7 +201,10 @@ final class UnitTestingViewModelTests: XCTestCase {
     
     func test_UnitTestingViewModel_saveItem_shouldSaveItem_stress() {
         // Given
-        let viewModel = UnitTestingView.UnitTestingViewModel(isPremium: Bool.random())
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
         var tempItemArray = [String]()
         
         // When
