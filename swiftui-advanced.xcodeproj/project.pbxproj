@@ -12,6 +12,8 @@
 		2A362F3C2B05FE7400CFFD47 /* swiftui_advancedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A362F3B2B05FE7400CFFD47 /* swiftui_advancedTests.swift */; };
 		2A362F432B06003500CFFD47 /* UnitTestingViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A362F422B06003500CFFD47 /* UnitTestingViewModelTests.swift */; };
 		2AAD3AE22B0269A600CBA5F0 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 2AAD3AE12B0269A600CBA5F0 /* ComposableArchitecture */; settings = {ATTRIBUTES = (Required, ); }; };
+		2ACEDA2C2B08B67F00DA58EE /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACEDA2B2B08B67F00DA58EE /* ServiceManager.swift */; };
+		2ACEDA2E2B08CB3100DA58EE /* DataServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ACEDA2D2B08CB3100DA58EE /* DataServiceTests.swift */; };
 		2F2E6F702B07510F007730A3 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2E6F6F2B07510F007730A3 /* AppError.swift */; };
 		2F2E6F732B075141007730A3 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F2E6F722B075141007730A3 /* DataService.swift */; };
 		2FD9404529C2034200559207 /* swiftui_advancedApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD9404429C2034200559207 /* swiftui_advancedApp.swift */; };
@@ -35,6 +37,8 @@
 		2A362F392B05FE7400CFFD47 /* swiftui-advancedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swiftui-advancedTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A362F3B2B05FE7400CFFD47 /* swiftui_advancedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swiftui_advancedTests.swift; sourceTree = "<group>"; };
 		2A362F422B06003500CFFD47 /* UnitTestingViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitTestingViewModelTests.swift; sourceTree = "<group>"; };
+		2ACEDA2B2B08B67F00DA58EE /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		2ACEDA2D2B08CB3100DA58EE /* DataServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataServiceTests.swift; sourceTree = "<group>"; };
 		2F2E6F6F2B07510F007730A3 /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		2F2E6F722B075141007730A3 /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		2FD9404129C2034200559207 /* swiftui-advanced.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "swiftui-advanced.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +82,7 @@
 			children = (
 				2A362F3B2B05FE7400CFFD47 /* swiftui_advancedTests.swift */,
 				2A362F422B06003500CFFD47 /* UnitTestingViewModelTests.swift */,
+				2ACEDA2D2B08CB3100DA58EE /* DataServiceTests.swift */,
 			);
 			path = "swiftui-advancedTests";
 			sourceTree = "<group>";
@@ -85,6 +90,7 @@
 		2F2E6F712B075135007730A3 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				2ACEDA2B2B08B67F00DA58EE /* ServiceManager.swift */,
 				2F2E6F722B075141007730A3 /* DataService.swift */,
 			);
 			path = Service;
@@ -233,6 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ACEDA2E2B08CB3100DA58EE /* DataServiceTests.swift in Sources */,
 				2A362F3C2B05FE7400CFFD47 /* swiftui_advancedTests.swift in Sources */,
 				2A362F432B06003500CFFD47 /* UnitTestingViewModelTests.swift in Sources */,
 			);
@@ -247,6 +254,7 @@
 				2A362F342B05FAFC00CFFD47 /* UnitTestingViewModel.swift in Sources */,
 				2A362F322B05F8A700CFFD47 /* UnitTestingView.swift in Sources */,
 				2F2E6F732B075141007730A3 /* DataService.swift in Sources */,
+				2ACEDA2C2B08B67F00DA58EE /* ServiceManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

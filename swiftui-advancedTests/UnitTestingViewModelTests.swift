@@ -7,6 +7,7 @@
 
 import XCTest
 @testable import swiftui_advanced
+import Combine
 
 // Naming Structure: test_UnitOfWork_StateUnderTest_ExpectedBehavior
 // Naming Structure: test_[struct or class]_[variable or function]_[expected result]
@@ -14,6 +15,7 @@ import XCTest
 
 final class UnitTestingViewModelTests: XCTestCase {
     var viewModel: UnitTestingView.UnitTestingViewModel?
+    var cancellables = Set<AnyCancellable>()
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -72,7 +74,7 @@ final class UnitTestingViewModelTests: XCTestCase {
         }
     }
     
-    func test_UnitTextViewModel_dataArray_shouldBeEmpty() {
+    func test_UnitTextViewModel_items_shouldBeEmpty() {
         // Given
         
         // When
@@ -82,11 +84,11 @@ final class UnitTestingViewModelTests: XCTestCase {
         }
         
         // Then
-        XCTAssertTrue(viewModel.dataArray.isEmpty)
-        XCTAssertEqual(viewModel.dataArray.count, 0)
+        XCTAssertTrue(viewModel.items.isEmpty)
+        XCTAssertEqual(viewModel.items.count, 0)
     }
     
-    func test_UnitTestingViewModel_dataArray_shouldBeAddItems() {
+    func test_UnitTestingViewModel_items_shouldBeAddItems() {
         // Given
         guard let viewModel else {
             XCTFail()
@@ -100,11 +102,11 @@ final class UnitTestingViewModelTests: XCTestCase {
         }
         
         // Then
-        XCTAssertFalse(viewModel.dataArray.isEmpty)
-        XCTAssertGreaterThanOrEqual(viewModel.dataArray.count, loopCount)
+        XCTAssertFalse(viewModel.items.isEmpty)
+        XCTAssertGreaterThanOrEqual(viewModel.items.count, loopCount)
     }
     
-    func test_UnitTestingViewModel_dataArray_shouldNotAddEmptyString() {
+    func test_UnitTestingViewModel_items_shouldNotAddEmptyString() {
         // Given
         guard let viewModel else {
             XCTFail()
@@ -115,8 +117,8 @@ final class UnitTestingViewModelTests: XCTestCase {
         viewModel.addItem(item: "")
         
         // Then
-        XCTAssertTrue(viewModel.dataArray.isEmpty)
-        XCTAssertEqual(viewModel.dataArray.count, 0)
+        XCTAssertTrue(viewModel.items.isEmpty)
+        XCTAssertEqual(viewModel.items.count, 0)
     }
     
     func test_UnitTestingViewModel_selectedItem_shouldStartAsNil() {
@@ -179,7 +181,7 @@ final class UnitTestingViewModelTests: XCTestCase {
         }
         
         // Then
-        XCTAssertEqual(viewModel.dataArray.count, loopCount)
+        XCTAssertEqual(viewModel.items.count, loopCount)
         XCTAssertNotNil(viewModel.selectedItem)
     }
     
@@ -218,5 +220,49 @@ final class UnitTestingViewModelTests: XCTestCase {
         XCTAssertNoThrow(
             try viewModel.saveItem(item: tempItemArray.randomElement() ?? "")
         )
+    }
+    
+    func test_UnitTestingViewModel_downloadItemsWithAsync_shouldReturnItems() {
+        // Given
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
+        let expectation = XCTestExpectation(description: "Should return items after 3 seconds.")
+        viewModel.$items
+            .dropFirst()
+            .sink { returnedItems in
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        
+        // When
+        viewModel.downloadItemsWithAsync()
+        
+        // Then
+        wait(for: [expectation], timeout: 5)
+        XCTAssertFalse(viewModel.items.isEmpty)
+    }
+    
+    func test_UnitTestingViewModel_downloadItemsWithCombine_shouldReturnItems() {
+        // Given
+        guard let viewModel else {
+            XCTFail()
+            return
+        }
+        let expectation = XCTestExpectation(description: "Should return items after 3 seconds.")
+        viewModel.$items
+            .dropFirst()
+            .sink { returnedItems in
+                expectation.fulfill()
+            }
+            .store(in: &cancellables)
+        
+        // When
+        viewModel.downloadItemWithCombine()
+        
+        // Then
+        wait(for: [expectation], timeout: 5)
+        XCTAssertFalse(viewModel.items.isEmpty)
     }
 }

@@ -14,8 +14,18 @@ protocol DataServiceProtocol {
 }
 
 final class DataService: DataServiceProtocol {
+    func downloadItemsWithAsync() async throws -> [String] {
+        do {
+            try await Task.sleep(nanoseconds: 3_000_000_000)
+            return ["비동기 데이터1", "비동기 데이터2", "비동기 데이터3"]
+        } catch {
+            throw error
+        }
+    }
+    
     func downloadItemsWithCombine() -> AnyPublisher<[String], Error> {
         Just(["비동기 데이터1", "비동기 데이터2", "비동기 데이터3"])
+            .delay(for: .seconds(3), scheduler: DispatchQueue.main)
             .tryMap { publishedItems in
                 guard !publishedItems.isEmpty else {
                     throw URLError(.badServerResponse)
@@ -24,14 +34,5 @@ final class DataService: DataServiceProtocol {
                 return publishedItems
             }
             .eraseToAnyPublisher()
-    }
-    
-    func downloadItemsWithAsync() async throws -> [String] {
-        do {
-            try await Task.sleep(nanoseconds: 2_000_000_000)
-            return ["비동기 데이터1", "비동기 데이터2", "비동기 데이터3"]
-        } catch {
-            throw error
-        }
     }
 }
