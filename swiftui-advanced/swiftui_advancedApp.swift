@@ -11,8 +11,7 @@ import SwiftUI
 struct swiftui_advancedApp: App {
     var body: some Scene {
         WindowGroup {
-            ProgrammaticRoutingView()
-                .environmentObject(Router.shared)
+            GPSMapView()
         }
     }
 }
